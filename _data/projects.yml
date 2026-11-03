@@ -104,9 +104,13 @@ projects:
       sit beside a coding agent in a terminal, tmux or Byobu pane.
 
   - repo: api-almanac-rust
+    title: API Almanac
     group: Developer & data tools
     lang: Rust
-    summary: A local-first workbench for exploring, saving and rerunning HTTP API calls.
+    page: /projects/api-almanac-rust/
+    summary: >-
+      Local-first desktop workbench and CLI for exploring, saving and
+      rerunning HTTP API calls, kept as plain YAML files you own.
 
   - repo: curaflow
     group: Developer & data tools
