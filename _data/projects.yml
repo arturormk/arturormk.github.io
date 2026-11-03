@@ -78,7 +78,7 @@ projects:
   - repo: panopose-rust
     title: PanoPose
     group: Astronomy & hardware
-    lang: TypeScript
+    lang: Rust
     page: /projects/panopose-rust/
     summary: >-
       Linux desktop app for aligning 360° panoramas against the Sun, Moon,
