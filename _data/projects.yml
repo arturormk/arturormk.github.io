@@ -32,9 +32,13 @@ projects:
     summary: Minimal deterministic DHCPv4 server for a dedicated Ethernet interface.
 
   - repo: stassh-rust
+    title: StaSSH
     group: Systems & networking
     lang: Rust
-    summary: Portable, offline-first SSH workspace.
+    page: /projects/stassh-rust/
+    summary: >-
+      Portable, offline-first SSH workspace: a CLI, a terminal UI and a
+      desktop app over one local vault, running your system OpenSSH.
 
   - repo: philips-sicp-client
     group: Displays & media
