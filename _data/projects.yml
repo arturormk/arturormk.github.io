@@ -91,9 +91,13 @@ projects:
     summary: BLE-enabled M5StickC clinometer with message, clock, RA/Dec and Alt/Az screens.
 
   - repo: gitwatch-rust
+    title: gitwatch
     group: Developer & data tools
     lang: Rust
-    summary: A live, read-only terminal viewer for Git working-tree changes.
+    page: /projects/gitwatch-rust/
+    summary: >-
+      A live, read-only terminal viewer for uncommitted Git changes, made to
+      sit beside a coding agent in a terminal, tmux or Byobu pane.
 
   - repo: api-almanac-rust
     group: Developer & data tools
