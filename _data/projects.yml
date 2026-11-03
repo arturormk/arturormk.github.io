@@ -56,9 +56,14 @@ projects:
     summary: Python CLI and client library for controlling ViewSonic CDE/LFD displays over TCP or RS-232.
 
   - repo: syncplayer
+    title: Syncplayer
     group: Displays & media
     lang: Rust
-    summary: Experimental Rust/GStreamer player for clock-synchronised local-media playback.
+    page: /projects/syncplayer/
+    status: release candidate
+    summary: >-
+      Rust/GStreamer video player that keeps local media on several Linux
+      PCs or Raspberry Pis in step with one Master timeline.
 
   - repo: gb-cplusplus
     title: GoBro
