@@ -76,9 +76,13 @@ projects:
       export with map and telemetry overlays.
 
   - repo: panopose-rust
+    title: PanoPose
     group: Astronomy & hardware
     lang: TypeScript
-    summary: Manual spherical panorama orientation and astronomical planning.
+    page: /projects/panopose-rust/
+    summary: >-
+      Linux desktop app for aligning 360° panoramas against the Sun, Moon,
+      planets and stars, and exporting them as Stellarium landscapes.
 
   - repo: cardputer-adv-indi-controller
     group: Astronomy & hardware
