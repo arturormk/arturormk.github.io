@@ -1,0 +1,25 @@
+---
+layout: default
+title: Projects
+---
+<header class="intro wrap">
+  <h1>Tools I build, and use.</h1>
+  <p>
+    Open-source projects for the problems I keep running into: deploying Linux
+    PCs, driving commercial displays, pointing telescopes, and making the
+    terminal a nicer place to work. Most are small, focused and
+    dependency-light.
+  </p>
+</header>
+
+<section class="wrap" id="projects">
+  {% for g in site.data.projects.groups %}
+  {%- assign items = site.data.projects.projects | where: "group", g -%}
+  {% if items.size > 0 %}
+  <h2 class="group">{{ g }}</h2>
+  <ul class="cards">
+    {% for p in items %}{% include project-card.html project=p %}{% endfor %}
+  </ul>
+  {% endif %}
+  {% endfor %}
+</section>

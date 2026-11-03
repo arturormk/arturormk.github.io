@@ -1,0 +1,124 @@
+# One entry per public project, listed on the home page in this order,
+# grouped by `group`.
+#
+#   repo:    GitHub repository name (under site.github_user)
+#   title:   display name (defaults to repo)
+#   summary: one or two sentences
+#   lang:    primary language
+#   page:    path of the project's page on this site; omit if there is none
+#            yet, and the card links straight to GitHub
+#   status:  optional short badge (e.g. "alpha")
+
+groups:
+  - Systems & networking
+  - Displays & media
+  - Astronomy & hardware
+  - Developer & data tools
+
+projects:
+  - repo: replant
+    title: Replant
+    group: Systems & networking
+    lang: Python
+    page: /projects/replant/
+    status: alpha
+    summary: >-
+      Turn a Clonezilla image of a Linux PC into a package that restores onto
+      a disk of any size, smaller or larger than the original.
+
+  - repo: monitor-dhcp-rust
+    group: Systems & networking
+    lang: Rust
+    summary: Minimal deterministic DHCPv4 server for a dedicated Ethernet interface.
+
+  - repo: stassh-rust
+    group: Systems & networking
+    lang: Rust
+    summary: Portable, offline-first SSH workspace.
+
+  - repo: philips-sicp-client
+    group: Displays & media
+    lang: Python
+    summary: Dependency-free Python CLI and client library for Philips SICP displays.
+
+  - repo: iiyama-control
+    group: Displays & media
+    lang: Python
+    summary: Python CLI and client library for iiyama LHxx82S display control.
+
+  - repo: viewsonic-lfd-control
+    group: Displays & media
+    lang: Python
+    summary: Python CLI and client library for controlling ViewSonic CDE/LFD displays over TCP or RS-232.
+
+  - repo: syncplayer
+    group: Displays & media
+    lang: Rust
+    summary: Experimental Rust/GStreamer player for clock-synchronised local-media playback.
+
+  - repo: gb-cplusplus
+    group: Displays & media
+    lang: C++
+    summary: >-
+      Linux C++20 toolkit and 360° player for GoPro MAX recordings: GPMF
+      telemetry, EAC reconstruction, synced OSM map.
+
+  - repo: panopose-rust
+    group: Astronomy & hardware
+    lang: TypeScript
+    summary: Manual spherical panorama orientation and astronomical planning.
+
+  - repo: cardputer-adv-indi-controller
+    group: Astronomy & hardware
+    lang: C++
+    summary: Handheld Wi-Fi INDI controller for astronomical equipment, built for the M5Stack Cardputer ADV.
+
+  - repo: m5stickc-ble-clinometer
+    group: Astronomy & hardware
+    lang: Python
+    summary: BLE-enabled M5StickC clinometer with message, clock, RA/Dec and Alt/Az screens.
+
+  - repo: gitwatch-rust
+    group: Developer & data tools
+    lang: Rust
+    summary: A live, read-only terminal viewer for Git working-tree changes.
+
+  - repo: api-almanac-rust
+    group: Developer & data tools
+    lang: Rust
+    summary: A local-first workbench for exploring, saving and rerunning HTTP API calls.
+
+  - repo: curaflow
+    group: Developer & data tools
+    lang: Python
+    summary: >-
+      Incremental, parallel fetch → normalize → build pipeline with
+      hierarchical fan-out, conditional GET and diff-triggered actions for
+      web-curated data.
+
+  - repo: odsview-cli-python
+    group: Developer & data tools
+    lang: Python
+    summary: A read-only LibreOffice Calc viewer for the terminal.
+
+  - repo: ods2sql-python
+    group: Developer & data tools
+    lang: Python
+    summary: One-file, pure-stdlib Python tool that converts instrumented LibreOffice .ods sheets into SQL for SQLite, Postgres or MySQL.
+
+  - repo: typesketch-python
+    group: Developer & data tools
+    lang: Python
+    summary: A tiny CLI that reads JSON and infers a clean, type-oriented YAML summary of it.
+
+  - repo: dropin-cli-python
+    group: Developer & data tools
+    lang: Python
+    summary: >-
+      Drop-in Python module for building single-file CLIs: commands,
+      JSON/YAML/table output, progress bars, thread-pool helpers.
+
+  - repo: curator-seed-python
+    group: Developer & data tools
+    lang: Python
+    summary: Quick start your first Software Curator project.

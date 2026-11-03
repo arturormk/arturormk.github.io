@@ -1,0 +1,20 @@
+title: Arturo R Montesinos
+description: Open-source tools I build and use — disk deployment, display control, astronomy gadgets, terminal utilities and more.
+author: Arturo R Montesinos
+url: "https://arturormk.github.io"
+baseurl: ""
+github_user: arturormk
+lang: en
+
+# GitHub Pages builds this site natively (Jekyll 3.x, whitelisted plugins only).
+plugins:
+  - jekyll-seo-tag
+  - jekyll-sitemap
+
+exclude:
+  - README.md
+  - preview.sh
+  - Gemfile
+  - Gemfile.lock
+  - vendor
+  - .jekyll-cache

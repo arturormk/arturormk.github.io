@@ -1,0 +1,15 @@
+{%- assign p = include.project -%}
+{%- assign repo_url = "https://github.com/" | append: site.github_user | append: "/" | append: p.repo -%}
+<li class="card{% if p.page %} has-page{% endif %}">
+  <h3>
+    {% if p.page %}<a href="{{ p.page | relative_url }}">{{ p.title | default: p.repo }}</a>
+    {% else %}<a href="{{ repo_url }}">{{ p.title | default: p.repo }}</a>{% endif %}
+    {% if p.status %}<span class="badge">{{ p.status }}</span>{% endif %}
+  </h3>
+  <p>{{ p.summary }}</p>
+  <p class="meta">
+    <span class="lang">{{ p.lang }}</span>
+    {% if p.page %}<a href="{{ p.page | relative_url }}">Overview →</a>{% endif %}
+    <a href="{{ repo_url }}">Repository</a>
+  </p>
+</li>
