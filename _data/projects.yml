@@ -113,12 +113,14 @@ projects:
       rerunning HTTP API calls, kept as plain YAML files you own.
 
   - repo: curaflow
+    title: Curaflow
     group: Developer & data tools
     lang: Python
+    page: /projects/curaflow/
     summary: >-
-      Incremental, parallel fetch → normalize → build pipeline with
-      hierarchical fan-out, conditional GET and diff-triggered actions for
-      web-curated data.
+      Incremental, parallel fetch → normalize → build pipeline for
+      web-curated data, driven by one YAML manifest, with hierarchical
+      fan-out, conditional GET and structural diffs.
 
   - repo: odsview-cli-python
     group: Developer & data tools
