@@ -189,12 +189,8 @@ rendering anything.
 
 ### 4. Take the GPS track elsewhere
 
-`gb-telemetry` stays in the build tree, so run it from the
-`gb-cplusplus` folder:
-
 ```bash
-build/dev/tools/gb-telemetry/gb-telemetry --format gpx \
-    /data/gopro/GS010047.360 > route.gpx
+./gb-telemetry --format gpx /data/gopro/GS010047.360 > route.gpx
 ```
 
 The player can do the same from its telemetry panel, for every chapter of
