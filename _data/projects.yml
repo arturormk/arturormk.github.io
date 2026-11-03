@@ -57,11 +57,14 @@ projects:
     summary: Experimental Rust/GStreamer player for clock-synchronised local-media playback.
 
   - repo: gb-cplusplus
+    title: GoBro
     group: Displays & media
     lang: C++
+    page: /projects/gb-cplusplus/
     summary: >-
-      Linux C++20 toolkit and 360° player for GoPro MAX recordings: GPMF
-      telemetry, EAC reconstruction, synced OSM map.
+      Linux player and toolkit for GoPro MAX recordings: original .360
+      playback, synced GPS telemetry and OpenStreetMap route, and video
+      export with map and telemetry overlays.
 
   - repo: panopose-rust
     group: Astronomy & hardware
