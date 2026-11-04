@@ -98,9 +98,13 @@ projects:
       controller for telescope mounts and cameras on an INDI server.
 
   - repo: m5stickc-ble-clinometer
+    title: M5 Bluetooth Clinometer
     group: Astronomy & hardware
     lang: Python
-    summary: BLE-enabled M5StickC clinometer with message, clock, RA/Dec and Alt/Az screens.
+    page: /projects/m5stickc-ble-clinometer/
+    summary: >-
+      Firmware that turns M5Stack devices into a Bluetooth LE bubble level
+      and telescope status display, with a Python client for scripting it.
 
   - repo: gitwatch-rust
     title: gitwatch
