@@ -89,9 +89,13 @@ projects:
       planets and stars, and exporting them as Stellarium landscapes.
 
   - repo: cardputer-adv-indi-controller
+    title: Cardputer INDI Controller
     group: Astronomy & hardware
     lang: C++
-    summary: Handheld Wi-Fi INDI controller for astronomical equipment, built for the M5Stack Cardputer ADV.
+    page: /projects/cardputer-adv-indi-controller/
+    summary: >-
+      Firmware that turns the M5Stack Cardputer ADV into a handheld Wi-Fi
+      controller for telescope mounts and cameras on an INDI server.
 
   - repo: m5stickc-ble-clinometer
     group: Astronomy & hardware
