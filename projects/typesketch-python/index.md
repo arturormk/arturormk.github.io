@@ -93,14 +93,16 @@ orders:
 ```
 
 The two fields that only one order has, `coupon` and `receipt`, come last.
+Add `--stats` and they say so: `coupon: null  # present in 1 of 2`.
 
 ## Small on purpose
 
 <div class="features">
   <div>
     <h3>Fits in any pipeline</h3>
-    <p>JSON goes in on stdin and YAML comes out on stdout, so it works
-    straight after <code>curl</code>, <code>cat</code> or <code>jq</code>.</p>
+    <p>JSON goes in on stdin and valid YAML comes out on stdout, so it works
+    straight after <code>curl</code>, <code>cat</code> or <code>jq</code>.
+    Bad input gets a one-line error, not a traceback.</p>
   </div>
   <div>
     <h3>One shape, not many examples</h3>
@@ -114,10 +116,10 @@ The two fields that only one order has, `coupon` and `receipt`, come last.
     so you see more than just "string".</p>
   </div>
   <div>
-    <h3>Readable YAML lists</h3>
-    <p>Arrays of objects are shown as ordinary YAML lists with their merged
-    item shape, and arrays of scalars as a union such as
-    <code>string | int</code>.</p>
+    <h3>Nothing gets lost</h3>
+    <p>A field that is an object in one record and <code>null</code> in
+    another keeps its shape and says <code># also: null</code>. Mixed and
+    nested arrays are sketched in full.</p>
   </div>
   <div>
     <h3>Nothing to install around it</h3>
@@ -125,16 +127,15 @@ The two fields that only one order has, `coupon` and `receipt`, come last.
     straight from a clone without installing anything.</p>
   </div>
   <div>
-    <h3>Predictable output</h3>
-    <p>The heuristics are simple and written down in the project's design
-    records, so the same input always gives the same sketch.</p>
+    <h3>Optional fields at a glance</h3>
+    <p>With <code>--stats</code>, every field missing from some records
+    tells you how many had it, so you know what you can rely on.</p>
   </div>
 </div>
 
 ## What it supports today
 
-TypeSketch is at version 0.1.0, its first release, and deliberately keeps
-its scope small: it is a tool for exploring and documenting data, not a
+TypeSketch is at version 0.2.0 and deliberately keeps its scope small: it is a tool for exploring and documenting data, not a
 validator.
 
 - Python 3.9 or newer, with no other dependencies
@@ -143,14 +144,15 @@ validator.
 - Types `int`, `number`, `boolean`, `null` and `string`, plus the hints
   `url`, `email`, `datetime` and `html-string`
 - Options for a root key (`--root`), treating a single object as a list
-  (`--force-list`), how many array items to sample (`--array-samples`) and
-  the indent width (`--indent`)
+  (`--force-list`), how many array items to sample (`--array-samples`),
+  the indent width (`--indent`) and presence counts (`--stats`)
 
 It isn't published on PyPI; you install it from a clone of the repository.
-The `--stats` option is accepted but doesn't do anything yet. The roadmap
-lists JSON Schema and OpenAPI output, statistics on which fields are always
-present, a Markdown renderer for docs sites, pluggable detectors and a
-streaming mode for very large inputs.
+The `# also:` and `--stats` notes are YAML comments, so a program that loads
+the sketch sees only the shapes, and the counts describe your sample, not
+what the API promises. The roadmap lists JSON Schema and OpenAPI output, a
+Markdown renderer for docs sites, pluggable detectors and a streaming mode
+for very large inputs.
 
 ## Get started
 
@@ -189,6 +191,9 @@ typesketch --root Shops < shops.json
 
 # Treat a single object as a one-item list
 typesketch --force-list < item.json
+
+# Show which fields are missing from some records
+typesketch --stats < response.json
 ```
 
 `typesketch --help` lists every option.
