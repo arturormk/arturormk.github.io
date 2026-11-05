@@ -145,9 +145,13 @@ projects:
     summary: One-file, pure-stdlib Python tool that converts instrumented LibreOffice .ods sheets into SQL for SQLite, Postgres or MySQL.
 
   - repo: typesketch-python
+    title: TypeSketch
     group: Developer & data tools
     lang: Python
-    summary: A tiny CLI that reads JSON and infers a clean, type-oriented YAML summary of it.
+    page: /projects/typesketch-python/
+    summary: >-
+      A tiny, dependency-free CLI that reads JSON and infers a concise,
+      type-oriented YAML sketch of its shape.
 
   - repo: dropin-cli-python
     group: Developer & data tools
