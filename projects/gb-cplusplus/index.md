@@ -65,6 +65,13 @@ exporter, `gb-render`, turns that framing into a video.
   <li><strong>Export</strong><span>Run <code>gb-render</code> with those settings to produce an MP4 with the map, speed, height and time drawn in.</span></li>
 </ol>
 
+<figure class="shot">
+  <img src="gb-player-screenshot.jpg" width="1920" height="1080"
+    alt="gb-player playing a walk along a gravel track, with the OpenStreetMap route map, the GPS telemetry panel and the height graph on the right">
+  <figcaption>The player: the route map, telemetry panel and height graph
+  follow the frame on screen.</figcaption>
+</figure>
+
 ## Made for looking back at a trip
 
 <div class="features">
@@ -104,6 +111,14 @@ exporter, `gb-render`, turns that framing into a video.
     versioned JSON output.</p>
   </div>
 </div>
+
+<figure class="shot">
+  <img src="gb-render-screenshot.jpg" width="1920" height="1080"
+    alt="A frame exported by gb-render: a ride along a dirt road with the clock, speed, altitude and distance over the picture and a round route map in the top right corner">
+  <figcaption>A frame from a <code>gb-render</code> export: time, speed,
+  altitude and distance drawn over the picture, with a round route map in
+  the corner.</figcaption>
+</figure>
 
 ## What it supports today
 
