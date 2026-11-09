@@ -18,6 +18,8 @@ facts:
   - Sub-millisecond sync across four Raspberry Pis over 17 hours
   - Slaves keep playing if the Master goes away
   - Built-in console and sync diagnostics
+  - Per-player PNG overlays you can update over the LAN
+  - Correct colors on Raspberry Pi 4 without a desktop
   - MIT or Apache-2.0
 ---
 
@@ -103,12 +105,53 @@ on.
     for example to dim the lights 12.5 seconds into the main video.</p>
   </div>
   <div>
+    <h3>Overlays on any screen</h3>
+    <p>Each player can accept PNG layers over the network and draw them
+    over its video: a label, a mask, a sprite placed on a physical object.
+    Layers can be moved, restacked and faded without resending the
+    image.</p>
+  </div>
+  <div>
+    <h3>Deliberately delayed screens</h3>
+    <p>A Slave can show the Master's timeline a fixed number of seconds
+    late, set on the command line or per player in the program, while
+    staying exactly as locked to the shared clock as the others.</p>
+  </div>
+  <div>
     <h3>You can see how well it syncs</h3>
     <p>An optional console pauses, seeks and loops the whole installation,
     shows an on-screen overlay and reports each player's timing error.
     A CSV log and an analysis script give you the full picture.</p>
   </div>
 </div>
+
+## Overlays
+
+Start a player with an overlay listener and it will draw named PNG layers
+over its video, beneath the diagnostic overlay. Each layer has a
+rectangle in output pixels, a stacking order and an opacity. Any host on
+the LAN can send them with the built-in client, or speak the small
+[overlay protocol](https://github.com/arturormk/syncplayer/blob/main/docs/overlay-protocol.md)
+directly from its own tools.
+
+```bash
+# On the player
+syncplayer slave show.toml --master 10.0.0.1:46000 --kms-gl \
+    --overlay-bind 0.0.0.0:46002 --overlay-token s3cret
+
+# From any host on the LAN
+syncplayer overlay --player left-wall --token s3cret \
+    put --id label --rect 20,20,600,80 label.png
+syncplayer overlay --player left-wall --token s3cret \
+    move --id label --at 40,1000 --z 5
+syncplayer overlay --player left-wall --token s3cret clear
+```
+
+With `--kms-gl` on a Raspberry Pi the GPU blends the layers and only
+uploads a layer again when it changes. Overlays belong to one player: they
+are not part of the shared program, are not synchronized between screens,
+and disappear when the player restarts. The token travels in clear text,
+so bind the listener to a trusted network.
 
 ## What it supports today
 
@@ -120,6 +163,11 @@ rather than new features.
   from source with Rust and GStreamer 1.20 or newer.
 - **Proven so far:** the four-Raspberry-Pi topology described above, with
   hardware H.264 decoding.
+- **Raspberry Pi 4 without a desktop:** on a console-only Pi 4, GStreamer's
+  GL output used to render with a 10-bit color format that the display then
+  read as 8-bit, scrambling gradients and fine detail. Syncplayer now asks
+  for an 8-bit format, so colors are correct with both the default output
+  and the GPU-composited `--kms-gl` mode.
 - **Still open for v1.0:** one unexplained crash at the start of the soak
   test, deliberate network-loss and recovery testing, qualification on
   Ubuntu PCs and of the fullscreen and display paths, and a supported way
@@ -157,7 +205,9 @@ no cross-compilation.
 ### 2. Prepare the media
 
 Give every video the same size, frame rate and audio layout. One script
-targets PCs and one targets the Raspberry Pi's hardware decoder:
+targets PCs and one targets the Raspberry Pi's hardware decoder. Both
+convert color to SDR Rec.709 (tone-mapping HDR sources) and keep the
+aspect ratio with black bars, or fill the frame with `--fit stretch`:
 
 ```bash
 ./tools/prepare-video-for-pc.sh -o media/main-pc.mp4 main.mov
@@ -217,6 +267,8 @@ Ctrl-C stops a player cleanly.
   behaviour in detail.
 - **[Media preparation](https://github.com/arturormk/syncplayer/blob/main/docs/media-preparation.md)**:
   formats, options and keeping per-host renditions in step.
+- **[Overlay protocol](https://github.com/arturormk/syncplayer/blob/main/docs/overlay-protocol.md)**:
+  the wire format for sending layers from your own tools.
 - **[Example programs](https://github.com/arturormk/syncplayer/blob/main/examples/full-show.toml)**:
   aliases, per-player files, external audio and timed events.
 - **[Design blueprint](https://github.com/arturormk/syncplayer/blob/main/docs/BLUEPRINT.md)**

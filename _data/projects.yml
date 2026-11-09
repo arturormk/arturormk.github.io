@@ -67,7 +67,8 @@ projects:
     status: release candidate
     summary: >-
       Rust/GStreamer video player that keeps local media on several Linux
-      PCs or Raspberry Pis in step with one Master timeline.
+      PCs or Raspberry Pis in step with one Master timeline, with
+      per-screen overlays.
 
   - repo: gb-cplusplus
     title: GoBro
