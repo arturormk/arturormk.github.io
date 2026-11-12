@@ -107,6 +107,17 @@ projects:
       Firmware that turns M5Stack devices into a Bluetooth LE bubble level
       and telescope status display, with a Python client for scripting it.
 
+  - repo: perfboard-designer-rust
+    title: Perfboard Designer
+    group: Astronomy & hardware
+    lang: Rust
+    page: /projects/perfboard-designer-rust/
+    status: in development
+    summary: >-
+      Desktop editor for laying out circuits on perfboard, with an MCP
+      server so Claude Code or Codex can place parts, route wires and check
+      the design alongside you.
+
   - repo: gitwatch-rust
     title: gitwatch
     group: Developer & data tools
