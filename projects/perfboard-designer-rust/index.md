@@ -206,8 +206,9 @@ cd perfboard-designer-rust
 ./target/release/perfboard-designer
 ```
 
-Open `examples/nano-rs485.perfboard.json` from the File menu to look
-around a finished design.
+The app opens on an empty perfboard, ready for your own project. Pick
+parts from the library on the left and click a hole to place them, or
+use **File → New board…** to choose another size first.
 
 ### 2. Connect your agent
 
