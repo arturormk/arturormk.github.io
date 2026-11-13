@@ -64,9 +64,10 @@ nothing to import or export.
 
 <figure class="shot">
   <img src="nano-rs485-board.png" width="1600" height="1000"
-    alt="Perfboard Designer showing an Arduino Nano, an RS-485 module and two RJ45 connectors on a 20 by 26 hole perfboard, with coloured wires, bridges and resistors">
-  <figcaption>An Arduino Nano RS-485 node with two RJ45 jacks: the parts
-  library on the left, the board in the middle, and the inspector with
+    alt="Perfboard Designer showing the mirrored solder side of a 20 by 26 hole perfboard for an Arduino Nano RS-485 node, with solder bridges joining pads and coloured wires between them">
+  <figcaption>The solder side of an Arduino Nano RS-485 node with two RJ45
+  jacks, mirrored as you see it when you flip the board: the parts library
+  on the left, the bridges and wires in the middle, and the inspector with
   Problems and History on the right.</figcaption>
 </figure>
 
