@@ -18,6 +18,7 @@ facts:
   - Agents edit the same design you see, live
   - Electrical changes wait for your approval
   - Every step can be undone, committed and compared
+  - Prints 1:1 wire cut and bending guides
   - MIT
 ---
 
@@ -80,9 +81,9 @@ The MCP server gives the agent the same tools you have, and no more:
   </div>
   <div>
     <h3>Edit it</h3>
-    <p>Place, move and rotate parts, create nets, draw wires, bridges and
-    rails, all as grouped operations that land as one step in the
-    history.</p>
+    <p>Place, move and rotate parts, create, rename and merge nets, draw
+    wires, bridges, rails and saddles, all as grouped operations that land
+    as one step in the history.</p>
   </div>
   <div>
     <h3>Route with the engine</h3>
@@ -142,7 +143,15 @@ Perfboard Designer is fully usable without an agent.
   <div>
     <h3>Wires, bridges and rails</h3>
     <p>Draw wires pin to pin with bends where you click. Unrouted
-    connections show as dashed lines; click one for a suggested route.</p>
+    connections show as dashed lines; click one for a suggested route.
+    Rails take their own colour and connection nodes, and saddles tie
+    wire bundles down to the board.</p>
+  </div>
+  <div>
+    <h3>Nets that stay tidy</h3>
+    <p>Rename nets, remove unused ones, or merge two into one. A jumper
+    can be left open or shunted, and a shunt can join two nets, as a
+    selector jumper does.</p>
   </div>
   <div>
     <h3>Problems with advice</h3>
@@ -158,7 +167,7 @@ Perfboard Designer is fully usable without an agent.
   <div>
     <h3>Ready for the bench</h3>
     <p>Print a build drawing with both sides of the board and a cut list
-    of every wire.</p>
+    of every wire, plus true-scale wire guides (see below).</p>
   </div>
   <div>
     <h3>Local files</h3>
@@ -166,6 +175,42 @@ Perfboard Designer is fully usable without an agent.
     cloud.</p>
   </div>
 </div>
+
+## From screen to solder
+
+A layout is only useful once it is on the board. **File → Export wire
+templates…** turns every wire in the design into a PDF you print and
+build from, at exactly 1:1:
+
+<div class="features">
+  <div>
+    <h3>Cut guide</h3>
+    <p>Every wire laid out straight in its own column on a millimetre
+    grid, in its insulation colour, with both cut lines, the strip marks
+    and a triangle with the angle at each bend. Hold the wire against it
+    as it comes off the spool, mark it, and cut.</p>
+  </div>
+  <div>
+    <h3>Bending templates</h3>
+    <p>Each wire shape drawn full size over the board's hole grid, every
+    run dimensioned in millimetres and in hole pitches. Lay the cut wire
+    on its template and bend it to match. Wires with the same shape share
+    one template.</p>
+  </div>
+</div>
+
+<figure class="shot">
+  <img src="wire-templates.png" width="1280" height="726"
+    alt="Part of the wire PDF for the Nano RS-485 example: on the left, four wires drawn straight on a millimetre grid with cut lines, strip ticks and 45-degree bend markers; on the right, the bending template for wire W2, with its 32.33 mm diagonal run and 7.62 mm end run over a grid of board holes">
+  <figcaption>From the Nano RS-485 example: the cut guide (left) and the
+  bending template for wire W2 (right), both at actual size on
+  paper.</figcaption>
+</figure>
+
+It is a PDF rather than an ordinary print because true scale is
+surprisingly fragile: the app's web view and many PDF viewers quietly
+resize printed pages. Print it with **Page Scaling set to None** (or
+*Actual size*), then check the 50 mm bar at the top of every page.
 
 ## Where it stands
 
@@ -184,8 +229,9 @@ tools may change.
   RS-485 breakouts, RJ45 jacks, Dupont pins and jumpers), plus the Part
   designer for your own.
 
-Not there yet: assembly planning (the order to solder things in), and
-creating parts through MCP, which agents can only read today. Passing
+Not there yet: the rest of assembly planning (the order to solder
+things in, and a step-by-step build view), and creating parts through
+MCP, which agents can only read today. Passing
 validation means the geometry and connections are consistent. It is
 never a guarantee that a circuit is electrically correct or safe.
 

@@ -116,7 +116,8 @@ projects:
     summary: >-
       Desktop editor for laying out circuits on perfboard, with an MCP
       server so Claude Code or Codex can place parts, route wires and check
-      the design alongside you.
+      the design alongside you, and 1:1 printed guides to cut and bend
+      every wire.
 
   - repo: gitwatch-rust
     title: gitwatch
