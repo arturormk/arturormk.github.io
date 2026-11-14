@@ -20,6 +20,7 @@ facts:
   - Every step can be undone, committed and compared
   - Step-by-step build order with an Assembly mode
   - Prints 1:1 wire cut and bending guides
+  - Standard parts library, plus your own per project
   - MIT
 ---
 
@@ -89,8 +90,9 @@ The MCP server gives the agent the same tools you have, and no more:
   </div>
   <div>
     <h3>Route with the engine</h3>
-    <p>Ask the deterministic router for suggested wire runs, or have it
-    evaluate a route the agent drew itself before committing to it.</p>
+    <p>Ask the deterministic router for suggested wire runs, with
+    alternatives to choose from, or have it evaluate a route the agent
+    drew itself before committing to it.</p>
   </div>
   <div>
     <h3>Keep a history</h3>
@@ -116,6 +118,10 @@ not the one holding the soldering iron. So:
 - **A narrow door.** The bridge listens only on the local loopback
   interface and authenticates every request with a token created for that
   launch. It offers no file or shell access.
+- **Received projects stay in their folder.** A project someone sends you
+  reads parts only from its own folder and the standard library, never
+  from elsewhere on your computer, until you grant it access. Agents can
+  read the parts but can't change where they come from.
 
 ### House rules in plain English
 
@@ -145,7 +151,9 @@ Perfboard Designer is fully usable without an agent.
   <div>
     <h3>Wires, bridges and rails</h3>
     <p>Draw wires pin to pin with bends where you click. Unrouted
-    connections show as dashed lines; click one for a suggested route.
+    connections show as dashed lines; click one for a suggested route,
+    then flip through alternatives with the number keys: a different
+    path, fewest bends, shortest, or the other side of the board.
     Rails take their own colour and connection nodes, and saddles tie
     wire bundles down to the board.</p>
   </div>
@@ -153,7 +161,8 @@ Perfboard Designer is fully usable without an agent.
     <h3>Nets that stay tidy</h3>
     <p>Rename nets, remove unused ones, or merge two into one. A jumper
     can be left open or shunted, and a shunt can join two nets, as a
-    selector jumper does.</p>
+    selector jumper does. Placed parts get reference designators: R1,
+    C2, U1.</p>
   </div>
   <div>
     <h3>Problems with advice</h3>
@@ -162,9 +171,11 @@ Perfboard Designer is fully usable without an agent.
   </div>
   <div>
     <h3>Your own parts</h3>
-    <p>The Part designer edits body outlines, pins, keepouts and
-    documentation. Parts are plain TOML and Markdown files you can keep
-    in Git.</p>
+    <p>Keep parts in a folder that travels with the project, or in a
+    library of your own shared by several projects. The Part designer
+    edits body outlines, pins, keepouts and documentation, and copies a
+    standard part when you want to change it. Parts are plain TOML and
+    Markdown files you can keep in Git.</p>
   </div>
   <div>
     <h3>Ready for the bench</h3>
@@ -297,13 +308,15 @@ tools may change.
 - **Agents**: Claude Code and Codex are configured in the repository.
   Other MCP clients that speak stdio should work, but haven't been
   tested.
-- **Parts library**: a small starter set (Arduino Nano, resistors,
-  RS-485 breakouts, RJ45 jacks, Dupont pins and jumpers), plus the Part
-  designer for your own.
+- **Parts library**: 46 standard parts (resistors, ceramic and
+  electrolytic capacitors, diodes and LEDs, TO-92 and TO-220 packages,
+  DIP packages, pin headers, screw terminals, Dupont pins and jumpers),
+  plus the Part designer and library folders for your own. The Arduino
+  Nano, RS-485 breakout and RJ45 jacks of the example are project parts
+  that travel with it.
 
-Not there yet: a larger parts library, a place to keep parts of your
-own with each project, and creating parts through MCP, which agents can
-only read today. The build order is a heuristic: it follows the
+Not there yet: creating parts through MCP, which agents can only read
+today. The build order is a heuristic: it follows the
 physical dependencies but doesn't model whether the iron can reach a
 joint between tall parts, and where two wires cross on the same side
 without a recorded choice, it leaves their order to you. Assembly
