@@ -18,6 +18,7 @@ facts:
   - Agents edit the same design you see, live
   - Electrical changes wait for your approval
   - Every step can be undone, committed and compared
+  - Step-by-step build order with an Assembly mode
   - Prints 1:1 wire cut and bending guides
   - MIT
 ---
@@ -77,8 +78,8 @@ The MCP server gives the agent the same tools you have, and no more:
   <div>
     <h3>Read the design</h3>
     <p>The full project, the board, the parts library with each part's
-    documentation, the validation report and a rendered picture of either
-    side of the board.</p>
+    documentation, the validation report, the assembly plan and a
+    rendered picture of either side of the board.</p>
   </div>
   <div>
     <h3>Edit it</h3>
@@ -167,8 +168,9 @@ Perfboard Designer is fully usable without an agent.
   </div>
   <div>
     <h3>Ready for the bench</h3>
-    <p>Print a build drawing with both sides of the board and a cut list
-    of every wire, plus true-scale wire guides (see below).</p>
+    <p>Step through the build in Assembly mode, print a build drawing
+    with the wire list and a build-order checklist, and export true-scale
+    wire guides (see below).</p>
   </div>
   <div>
     <h3>Local files</h3>
@@ -179,9 +181,77 @@ Perfboard Designer is fully usable without an agent.
 
 ## From screen to solder
 
-A layout is only useful once it is on the board. **File → Export wire
-templates…** turns every wire in the design into a PDF you print and
-build from, at exactly 1:1:
+A layout is only useful once it is on the board, and on perfboard the
+order you build in matters: a wire that runs under a part has to go in
+first, a bridge can only be made once everything that ends in its holes
+is soldered, a rail before the wires soldered to it. Perfboard
+Designer works that order out for you.
+
+### A build plan, step by step
+
+The app derives an assembly plan from the design: one step per part,
+wire, rail, bridge and saddle, followed by checks. Physical
+dependencies come first, each with the reason it was added. Within
+them, it follows the usual bench habits: flat wires and rails on the
+component side, then small parts, smallest first, then larger ones,
+then the solder side, bridges last. The same design always gives the
+same plan, and it updates as soon as you, or an agent, change the board.
+
+<div class="features">
+  <div>
+    <h3>Assembly mode</h3>
+    <p>A third workspace next to the editor. The board shows only what
+    is installed up to the current step, with the holes for this step
+    ringed, and flips to the face you are working on. Press Enter to
+    tick a step and move to the next one.</p>
+  </div>
+  <div>
+    <h3>Everything for the step</h3>
+    <p>Instructions, notes, the steps it comes after, and for wires and
+    rails the colour, net, approximate cut length, bends and endpoints,
+    plus a fitting jumper from your inventory when there is one.</p>
+  </div>
+  <div>
+    <h3>Checks before power</h3>
+    <p>The last steps ask for a look at the solder side, a continuity
+    test per net and a short test between supply and ground. Pick a
+    measurement and the board lights up its net and rings the pins to
+    probe.</p>
+  </div>
+  <div>
+    <h3>Progress that keeps up</h3>
+    <p>Checkmarks are kept per project, outside the design file. If you
+    change a step you already ticked, it is flagged, and a banner says
+    what the edit added, changed or removed in the plan.</p>
+  </div>
+</div>
+
+<figure class="shot">
+  <img src="assembly-mode.png" width="1600" height="869"
+    alt="Perfboard Designer in Assembly mode at step 24 of 83, Fit Nano: the step list on the left, the component side of the board in the middle with the wires and parts fitted so far faded and the Nano's 30 holes ringed, and the step's instructions on the right with the five wires that run under the Nano's body listed under Comes after">
+  <figcaption>Assembly mode on the Nano RS-485 example, at step 24 of 83.
+  The five wires that run under the Nano went in first, and the panel on
+  the right lists them under <em>Comes after</em>, each with the reason.
+  The solder-side wires (marked S) and the bridges come next.</figcaption>
+</figure>
+
+Agents can read the same plan through MCP, so you can ask yours to
+explain the order or to suggest a layout change that makes the board
+easier to build. They read it; they don't reorder it behind your back.
+
+### On paper
+
+**File → Print build drawing** puts the plan on paper for the bench, or
+for handing the build to someone else: both faces of the board, the
+wire list in the order the wires go in, with estimated cut lengths and
+a tick box for each, and a build-order checklist with every step and a
+box for each continuity measurement. Steps you have already ticked in
+the app print as done.
+
+### Wires cut and bent to size
+
+**File → Export wire templates…** turns every wire and rail in the
+design into a PDF you print and build from, at exactly 1:1:
 
 <div class="features">
   <div>
@@ -189,7 +259,8 @@ build from, at exactly 1:1:
     <p>Every wire laid out straight in its own column on a millimetre
     grid, in its insulation colour, with both cut lines, the strip marks
     and a triangle with the angle at each bend. Hold the wire against it
-    as it comes off the spool, mark it, and cut.</p>
+    as it comes off the spool, mark it, and cut. Rails also show where to
+    strip the insulation for each connection point.</p>
   </div>
   <div>
     <h3>Bending templates</h3>
@@ -217,8 +288,8 @@ resize printed pages. Print it with **Page Scaling set to None** (or
 
 Perfboard Designer is in its first public development series (0.1). It
 has reached what I'd call a minimum usable product: you can design a
-real board from start to finish, by hand or with an agent, and print it
-to build. It is still very much in development, and file formats and
+real board from start to finish, by hand or with an agent, and then
+build it step by step from the screen or from paper. It is still very much in development, and file formats and
 tools may change.
 
 - **Platform**: developed and tested on **Linux**. The code is written to
@@ -230,11 +301,16 @@ tools may change.
   RS-485 breakouts, RJ45 jacks, Dupont pins and jumpers), plus the Part
   designer for your own.
 
-Not there yet: the rest of assembly planning (the order to solder
-things in, and a step-by-step build view), and creating parts through
-MCP, which agents can only read today. Passing
-validation means the geometry and connections are consistent. It is
-never a guarantee that a circuit is electrically correct or safe.
+Not there yet: a larger parts library, a place to keep parts of your
+own with each project, and creating parts through MCP, which agents can
+only read today. The build order is a heuristic: it follows the
+physical dependencies but doesn't model whether the iron can reach a
+joint between tall parts, and where two wires cross on the same side
+without a recorded choice, it leaves their order to you. Assembly
+checkmarks are stored on the computer, so a build continued on another
+machine starts from the printed checklist. Passing validation means the
+geometry and connections are consistent. It is never a guarantee that a
+circuit is electrically correct or safe.
 
 ## Get started
 
