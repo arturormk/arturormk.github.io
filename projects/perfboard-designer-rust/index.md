@@ -18,6 +18,7 @@ facts:
   - Agents edit the same design you see, live
   - Electrical changes wait for your approval
   - Every step can be undone, committed and compared
+  - Lays the circuit out on a breadboard to try first
   - Step-by-step build order with an Assembly mode
   - Prints 1:1 wire cut and bending guides
   - Standard parts library, plus your own per project
@@ -79,8 +80,8 @@ The MCP server gives the agent the same tools you have, and no more:
   <div>
     <h3>Read the design</h3>
     <p>The full project, the board, the parts library with each part's
-    documentation, the validation report, the assembly plan and a
-    rendered picture of either side of the board.</p>
+    documentation, the validation report, the assembly plan, the
+    breadboard layout and a rendered picture of either side of the board.</p>
   </div>
   <div>
     <h3>Edit it</h3>
@@ -189,6 +190,57 @@ Perfboard Designer is fully usable without an agent.
     cloud.</p>
   </div>
 </div>
+
+## Try it on a breadboard first
+
+Before you commit a circuit to solder, you usually want to see it work.
+The **Breadboard** tab rebuilds the design you have open on standard
+full-size solderless breadboards, ready to copy onto the bench, with no
+extra drawing on your part.
+
+<div class="features">
+  <div>
+    <h3>Parts where they fit</h3>
+    <p>A Nano, a DIP or a resistor straddles the channel; smaller parts
+    sit on one side with a row per pin. Parts never share a strip and
+    keep a free row around them, so nothing is cramped. More boards are
+    added side by side when one isn't tall enough.</p>
+  </div>
+  <div>
+    <h3>Rails and jumpers</h3>
+    <p>Ground and supply take the rails, with a link jumper joining the
+    two sides. Every other connection is a numbered Dupont jumper in the
+    colour of the net's wires on the perfboard, listed by net in the
+    side panel. Point at a jumper, or pick a net, to find it.</p>
+  </div>
+  <div>
+    <h3>Room to plug in</h3>
+    <p>Access areas, such as a Nano's USB end or the wire entry of a
+    screw terminal, are kept clear of parts and jumpers and face away
+    from the channel. Parts that can't sit on a board, like a 2×N
+    header, go beside it and are wired in with male–female leads.</p>
+  </div>
+  <div>
+    <h3>Always the same circuit</h3>
+    <p>The layout is worked out from the design every time it changes,
+    yours or an agent's, and is never edited by hand. It checks its own
+    copper against the nets, so a mistake shows up as a warning, never
+    as a silent short.</p>
+  </div>
+</div>
+
+<figure class="shot">
+  <img src="breadboard-view.png" width="1600" height="1000"
+    alt="Perfboard Designer's Breadboard tab showing a capacitive touch module on one full-size breadboard: an Arduino Nano straddling the channel with its USB end marked as an access area, four screw terminals with their wire entries marked, six resistors below them, 5V and GND on the rails, and coloured numbered jumpers; the panel on the right lists the rails and the 20 jumpers by net">
+  <figcaption>A capacitive touch module with a Nano, four screw terminals
+  and six resistors, laid out on a single breadboard with 20 jumpers. The
+  panel lists which net each rail carries, the jumpers that link the two
+  sides, and every jumper by net with its holes.</figcaption>
+</figure>
+
+The layout is deliberately roomy and may use more boards than you
+would by hand: it is made to be easy to read and hard to get wrong on
+the bench. Agents can read it too, through MCP.
 
 ## From screen to solder
 
